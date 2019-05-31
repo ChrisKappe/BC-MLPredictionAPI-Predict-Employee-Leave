@@ -1,0 +1,26 @@
+{
+  "id": "14df9d13-720b-4573-9005-d1a013be18d8",
+  "name": "MLPredictionAPI-Predict-Employee-Leave",
+  "publisher": "Default publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "14.0.0.0",
+  "application": "14.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://MLPredictionAPI-Predict-Employee-Leave.com/help/",
+  "showMyCode": true,
+  "runtime": "3.0"
+}
