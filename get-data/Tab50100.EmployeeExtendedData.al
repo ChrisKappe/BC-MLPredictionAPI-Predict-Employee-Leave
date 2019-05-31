@@ -32,7 +32,7 @@ table 50100 "EmployeeExtendedData"
         {
             CaptionML = ENU = 'Work_accident';
         }
-        field(8; "left"; Integer)
+        field(8; "left"; Boolean)
         {
             CaptionML = ENU = 'left';
         }

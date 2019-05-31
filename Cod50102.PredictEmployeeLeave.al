@@ -72,7 +72,7 @@ codeunit 50102 "Predict EmployeeLeave"
 
     local procedure SavePredictionResult(var EmployeeExtendedData: Record EmployeeExtendedData temporary; var Employee: Record Employee)
     begin
-        Employee."Predicted to Leave" := (EmployeeExtendedData.left = 1);
+        Employee."Predicted to Leave" := EmployeeExtendedData.left;
         Employee.confidence := EmployeeExtendedData.confidence;
         Employee.Modify();
     end;

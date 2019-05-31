@@ -59,7 +59,7 @@ codeunit 50100 "RefreshEmployeeExtendedData"
         EmployeeExtendedData."average_montly_hours" := GetJsonToken(JsonObject, 'average_montly_hours').AsValue.AsInteger;
         EmployeeExtendedData."time_spend_company" := GetJsonToken(JsonObject, 'time_spend_company').AsValue.AsInteger;
         EmployeeExtendedData."Work_accident" := GetJsonToken(JsonObject, 'Work_accident').AsValue.AsInteger;
-        EmployeeExtendedData."left" := GetJsonToken(JsonObject, 'left').AsValue.AsInteger;
+        EmployeeExtendedData."left" := (GetJsonToken(JsonObject, 'left').AsValue.AsInteger = 1);
         EmployeeExtendedData."promotion_last_5years" := GetJsonToken(JsonObject, 'promotion_last_5years').AsValue.AsInteger;
         EmployeeExtendedData."sales" := COPYSTR(GetJsonToken(JsonObject, 'sales').AsValue.AsText, 1, 250);
         EmployeeExtendedData."salary" := COPYSTR(GetJsonToken(JsonObject, 'salary').AsValue.AsText, 1, 250);
