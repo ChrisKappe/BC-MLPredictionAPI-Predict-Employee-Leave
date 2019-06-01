@@ -19,7 +19,6 @@ codeunit 50102 "Predict EmployeeLeave"
         MLPrediction.SetRecord(EmployeeExtendedData);
 
         //Set features
-        //Set features
         MLPrediction.AddFeature(EmployeeExtendedData.FieldNo(average_montly_hours));
         MLPrediction.AddFeature(EmployeeExtendedData.FieldNo(last_evaluation));
         MLPrediction.AddFeature(EmployeeExtendedData.FieldNo(number_project));
@@ -65,6 +64,12 @@ codeunit 50102 "Predict EmployeeLeave"
         with EmployeeExtendedData do begin
             Init();
             TransferFields(EmployeeLeaveHistory);
+            satisfaction_level := Random(100) / 100;
+            last_evaluation := Random(100) / 100;
+            number_project := Random(10);
+            average_montly_hours := 100 + Random(150);
+            promotion_last_5years := Random(1);
+            Work_accident := Random(1);
             time_spend_company := Date2DMY(Today, 3) - Date2DMY(Employee."Employment Date", 3);
             Insert()
         end;

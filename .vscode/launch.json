@@ -10,7 +10,6 @@
             "sandboxName": "MLPredictionApp-Sandbox",
             "startupObjectId": 50100,
             "startupObjectType": "Page"
-            //"schemaUpdateMode": "Recreate"
         }
     ]
 }
