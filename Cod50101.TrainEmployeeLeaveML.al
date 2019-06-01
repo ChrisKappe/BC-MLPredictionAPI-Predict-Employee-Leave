@@ -44,4 +44,16 @@ codeunit 50101 "Train EmployeeLeave ML"
         //Inform about traininig status
         Message('Model is trained. Quality is %1%', Round(MyModelQuality * 100, 1));
     end;
+
+    procedure DownloadPlotOfTheModel()
+    var
+        MLPrediction: Codeunit "ML Prediction Management";
+        PlotBase64: Text;
+        Setup: Record "Employee Leave ML Setup";
+    begin
+        Setup.Get();
+        MLPrediction.Initialize(Setup.getMLUri(), Setup.getMLKey(), 0);
+        PlotBase64 := MLPrediction.PlotModel(Setup.GetEmployeeLeaveModel(), Setup."My Features", Setup."My Label");
+        MLPrediction.DownloadPlot(PlotBase64, 'EmployeeLeavePrediction');
+    end;
 }

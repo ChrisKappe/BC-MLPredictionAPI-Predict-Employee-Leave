@@ -5,7 +5,7 @@ tableextension 50100 "ExtEmployee" extends Employee //MyTargetTableId
         field(50000; "Leave Prediction"; Option)
         {
             OptionMembers = " ",Leave,"Stay";
-            OptionCaption = ' ,Leave,Stay';
+            OptionCaption = ' ,Will Leave,Will Stay';
         }
         field(50001; "Prediction Confidence"; Option)
         {
@@ -17,6 +17,14 @@ tableextension 50100 "ExtEmployee" extends Employee //MyTargetTableId
         {
         }
 
+    }
+
+    fieldgroups
+    {
+        addlast(Brick; "Leave Prediction", "Prediction Confidence")
+        {
+
+        }
     }
 
 }

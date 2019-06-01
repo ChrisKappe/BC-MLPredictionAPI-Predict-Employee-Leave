@@ -50,6 +50,23 @@ pageextension 50100 "ExtEmployeeList" extends "Employee List" //MyTargetPageId
                     CurrPage.Update();
                 end;
             }
+
+            action("Why Leave")
+            {
+                Caption = 'Why Leave';
+                Image = Questionaire;
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    TrainEmployeeLeaveML: Codeunit "Train EmployeeLeave ML";
+                begin
+                    TrainEmployeeLeaveML.DownloadPlotOfTheModel();
+                end;
+            }
+
             action("History Data")
             {
                 Caption = 'Leave History';

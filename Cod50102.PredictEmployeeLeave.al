@@ -91,15 +91,17 @@ codeunit 50102 "Predict EmployeeLeave"
     local procedure SavePredictionResult(var EmployeeExtendedData: Record EmployeeExtendedData temporary; var Employee: Record Employee)
     begin
         EmployeeExtendedData.Find();
-        case EmployeeExtendedData.left of
-            true:
-                Employee."Leave Prediction" := Employee."Leave Prediction"::Leave;
-            false:
-                Employee."Leave Prediction" := Employee."Leave Prediction"::Stay;
+
+        Employee."Leave Prediction" := Employee."Leave Prediction"::" ";//Stay;
+        Employee."Prediction Confidence %" := 0;
+        Employee."Prediction Confidence" := 0;
+
+        IF EmployeeExtendedData.left Then begin
+            Employee."Leave Prediction" := Employee."Leave Prediction"::Leave;
+            Employee."Prediction Confidence %" := Round(EmployeeExtendedData.confidence * 100, 1);
+            Employee."Prediction Confidence" := GetConfidenceOptionFromConfidencePercent(EmployeeExtendedData.confidence);
         end;
 
-        Employee."Prediction Confidence %" := Round(EmployeeExtendedData.confidence * 100, 1);
-        Employee."Prediction Confidence" := GetConfidenceOptionFromConfidencePercent(EmployeeExtendedData.confidence);
         Employee.Modify();
     end;
 
