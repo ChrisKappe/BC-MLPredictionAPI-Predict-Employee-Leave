@@ -1,5 +1,15 @@
 codeunit 50102 "Predict EmployeeLeave"
 {
+    procedure PredictBatch()
+    var
+        Employee: Record Employee;
+    begin
+        if Employee.FindFirst() then
+            repeat
+                Predict(Employee);
+            until Employee.Next() = 0;
+    end;
+
     procedure Predict(Employee: Record Employee)
     var
         MLPrediction: Codeunit "ML Prediction Management";
@@ -63,13 +73,16 @@ codeunit 50102 "Predict EmployeeLeave"
         EmployeeLeaveHistory.FindLast();
         with EmployeeExtendedData do begin
             Init();
-            TransferFields(EmployeeLeaveHistory);
+            //TransferFields(EmployeeLeaveHistory);
+            "Line No." := 0;
             satisfaction_level := Random(100) / 100;
             last_evaluation := Random(100) / 100;
             number_project := Random(10);
             average_montly_hours := 100 + Random(150);
             promotion_last_5years := Random(1);
             Work_accident := Random(1);
+            sales := EmployeeLeaveHistory.sales;
+            salary := EmployeeLeaveHistory.salary;
             time_spend_company := Date2DMY(Today, 3) - Date2DMY(Employee."Employment Date", 3);
             Insert()
         end;
@@ -77,8 +90,28 @@ codeunit 50102 "Predict EmployeeLeave"
 
     local procedure SavePredictionResult(var EmployeeExtendedData: Record EmployeeExtendedData temporary; var Employee: Record Employee)
     begin
-        Employee."Predicted to Leave" := EmployeeExtendedData.left;
-        Employee.confidence := EmployeeExtendedData.confidence;
+        EmployeeExtendedData.Find();
+        case EmployeeExtendedData.left of
+            true:
+                Employee."Leave Prediction" := Employee."Leave Prediction"::Leave;
+            false:
+                Employee."Leave Prediction" := Employee."Leave Prediction"::Stay;
+        end;
+
+        Employee."Prediction Confidence %" := Round(EmployeeExtendedData.confidence * 100, 1);
+        Employee."Prediction Confidence" := GetConfidenceOptionFromConfidencePercent(EmployeeExtendedData.confidence);
         Employee.Modify();
     end;
+
+    local procedure GetConfidenceOptionFromConfidencePercent(ConfidencePrc: decimal) Confidence: Option " ",Low,Medium,High
+    begin
+        if (ConfidencePrc >= 0.9) then
+            exit(Confidence::High);
+
+        if (ConfidencePrc >= 0.8) then
+            exit(Confidence::Medium);
+
+        exit(Confidence::Low);
+    end;
+
 }

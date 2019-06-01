@@ -2,6 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Your own server",
+            "type": "al",
+            "request": "launch",
+            "server": "http://BCLatestUS",
+            "serverInstance": "NAV",
+            "authentication": "UserPassword",
+            "startupObjectId": 5201,
+            "breakOnError": true,
+            "breakOnRecordWrite": false,
+            "launchBrowser": true,
+            "schemaUpdateMode": "ForceSync"
+        },
+/*         {
             "type": "al",
             "request": "launch",
             "name": "Microsoft cloud sandbox",
@@ -11,5 +24,6 @@
             "startupObjectId": 50100,
             "startupObjectType": "Page"
         }
+ */
     ]
 }
