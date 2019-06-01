@@ -73,12 +73,11 @@ codeunit 50102 "Predict EmployeeLeave"
         EmployeeLeaveHistory.FindLast();
         with EmployeeExtendedData do begin
             Init();
-            //TransferFields(EmployeeLeaveHistory);
             "Line No." := 0;
             satisfaction_level := Random(100) / 100;
             last_evaluation := Random(100) / 100;
             number_project := Random(10);
-            average_montly_hours := 100 + Random(150);
+            average_montly_hours := 200 + Random(20);
             promotion_last_5years := Random(1);
             Work_accident := Random(1);
             sales := EmployeeLeaveHistory.sales;
