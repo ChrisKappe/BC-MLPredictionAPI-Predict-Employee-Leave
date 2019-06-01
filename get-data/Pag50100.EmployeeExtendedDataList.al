@@ -2,7 +2,7 @@ page 50100 "EmployeeExtendedDataList"
 {
     PageType = List;
     SourceTable = EmployeeExtendedData;
-    CaptionML = ENU = 'EmployeeExtendedData';
+    CaptionML = ENU = 'Employee Leave History';
     Editable = false;
     SourceTableView = order(descending);
     ApplicationArea = All;
@@ -66,7 +66,7 @@ page 50100 "EmployeeExtendedDataList"
         {
             action("RefreshEmployeeExtendedData")
             {
-                CaptionML = ENU = 'Refresh EmployeeExtendedData';
+                CaptionML = ENU = 'Refresh Data';
                 Promoted = true;
                 PromotedCategory = Process;
                 Image = RefreshLines;

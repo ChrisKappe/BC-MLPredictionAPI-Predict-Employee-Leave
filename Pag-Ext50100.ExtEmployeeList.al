@@ -57,6 +57,7 @@ pageextension 50100 "ExtEmployeeList" extends "Employee List" //MyTargetPageId
                 RunObject = page EmployeeExtendedDataList;
                 Promoted = true;
                 PromotedCategory = Process;
+                ApplicationArea = All;
             }
         }
     }
