@@ -1,7 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
+/*         {
             "name": "Your own server",
             "type": "al",
             "request": "launch",
@@ -14,7 +14,8 @@
             "launchBrowser": true,
             "schemaUpdateMode": "ForceSync"
         },
-/*         {
+ */
+          {
             "type": "al",
             "request": "launch",
             "name": "Microsoft cloud sandbox",
@@ -22,8 +23,9 @@
             "launchBrowser": true,
             "sandboxName": "MLPredictionApp-Sandbox",
             "startupObjectId": 50100,
-            "startupObjectType": "Page"
+            "startupObjectType": "Page",
+            "schemaUpdateMode": "ForceSync"
         }
- */
+ 
     ]
 }

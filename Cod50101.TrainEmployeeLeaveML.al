@@ -56,4 +56,14 @@ codeunit 50101 "Train EmployeeLeave ML"
         PlotBase64 := MLPrediction.PlotModel(Setup.GetEmployeeLeaveModel(), Setup."My Features", Setup."My Label");
         MLPrediction.DownloadPlot(PlotBase64, 'EmployeeLeavePrediction');
     end;
+
+    procedure GetPlotOfTheModel() PlotBase64: Text
+    var
+        Setup: Record "Employee Leave ML Setup";
+        MLPrediction: Codeunit "ML Prediction Management";
+    begin
+        Setup.Get();
+        MLPrediction.Initialize(Setup.getMLUri(), Setup.getMLKey(), 0);
+        PlotBase64 := MLPrediction.PlotModel(Setup.GetEmployeeLeaveModel(), Setup."My Features", Setup."My Label");
+    end;
 }

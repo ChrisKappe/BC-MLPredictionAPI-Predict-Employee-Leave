@@ -28,6 +28,15 @@ pageextension 50100 "ExtEmployeeList" extends "Employee List" //MyTargetPageId
             }
 
         }
+
+        addlast(FactBoxes)
+        {
+            part(PDFViewer; "AIR PDF Viewer Part")
+            {
+                Caption = 'PDF Viewer';
+                ApplicationArea = All;
+            }
+        }
     }
 
     actions
@@ -85,6 +94,7 @@ pageextension 50100 "ExtEmployeeList" extends "Employee List" //MyTargetPageId
     trigger OnAfterGetRecord()
     begin
         StyleTxt := SetStyle;
+        ShowPdfInViewer();
     end;
 
     procedure SetStyle(): Text
@@ -93,5 +103,12 @@ pageextension 50100 "ExtEmployeeList" extends "Employee List" //MyTargetPageId
         If "Leave Prediction" = "Leave Prediction"::Leave then
             exit('Attention');
         exit('')
+    end;
+
+    local procedure ShowPdfInViewer()
+    var
+        TrainEmployeeLeaveML: Codeunit "Train EmployeeLeave ML";
+    begin
+        CurrPage.PDFViewer.Page.LoadPdfFromBase64(TrainEmployeeLeaveML.GetPlotOfTheModel());
     end;
 }
